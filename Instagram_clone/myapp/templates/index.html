@@ -1,45 +1,39 @@
-<!DOCTYPE html>
-<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Instagram Clone</title>
+    <title>Signup</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'styles.css' %}" >
+    <script type="text/javascript" src="{% static 'scripts.js' %}"></script>
+    <script>
+    {% if error %}
+        alert("{{error}}");
+        if( "{{error}}" == "Id Created"){
+            window.location.href = "/login/";}
+    {% endif %}
+    </script>
 </head>
+
 <body>
-<h1>{{today}}</h1>
-	<div class="main">
-            <h1> Instagram Clone</h1>
-            <h3>Sign Up</h3>
+    <div id="header"> Instagram</div>
+    <div id="heading1">Sign up to see photos and videos from your friends.</div>
+    <div align="center">
+    <form name="myform" method="post" id="form" onsubmit="return validateSignupForm()">
+        {% csrf_token %}
+        <label style="font-size:25px; float:left; margin:20px 35px; color:#00796B" > <b>Signup</b> </label>
+        <input id="username" type="text" name="username" placeholder="Username" value={{ username }}> <br>
+        <input id="name" type="text" name="name" placeholder="Name" value={{ name }}> <br>
+        <input id="email" type="text" name="email" placeholder="Email" value={{ email }}> <br>
+        <input id="password" type="password" name="password" placeholder="Password" value={{ password }}> <br>
+        <input type="submit" class="button" value="Sign Up">
+    </form>
+    </div><br>
+    <div align="center" style=" font-size:20px">
+        <div style="border: 2px solid ; width:400px; padding:25px; background-color:white; color:#009688; margin:25px">
+            Have an account? <a href="/login/">Log in</a>
+        </div>
     </div>
-
-    <div>
-        <form method="post">
-
-            <div>
-                <label for="username">Username: </label>
-                <input id="username" type="text" name="username" value={{ username }}>
-            </div>
-
-            <div>
-                <label for="name">Name: </label>
-                <input id="name" type="text" name="name" value={{ name }}>
-            </div>
-
-            <div>
-                <label for="email">Email: </label>
-                <input id="email" type="text" name="email" value={{ email }}>
-            </div>
-
-            <div>
-                <label for="password">Password: </label>
-                <input id="password" type="password" name="password" value={{ password }}>
-            </div>
-                <input type="submit" value="Sign Up">
-        </form>
-
-
-    </div><br><br>
-
-    <div><h3>Already a user?</h3><a href="login/">Login</a> </div>
+    <!--
+    <div style="position:absolute; bottom:0; height:20px;">{{today}}</div>
+    -->
 </body>
-</html>
 
+</html>
